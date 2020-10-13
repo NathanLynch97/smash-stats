@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 const characterSchema = new Schema({
     name: String,
     img: String,
-    moves: Array,
+    moves: [{
+        name: String,
+        damage: Number,
+    }],
     user: {type: Schema.Types.ObjectId, ref: 'User'},
 }, {
     timestamps: true
