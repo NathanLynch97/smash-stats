@@ -5,6 +5,7 @@ const characterSchema = new Schema({
     name: String,
     img: String,
     moves: Array,
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
 }, {
     timestamps: true
 });
