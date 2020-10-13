@@ -3,7 +3,7 @@ const router = express.Router();
 const charactersCtrl = require('../controllers/characters');
 
 /*---------- Public Routes ----------*/
-
+router.get('/', charactersCtrl.index);
 
 
 
