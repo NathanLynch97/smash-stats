@@ -4,7 +4,7 @@ const charactersCtrl = require('../controllers/characters');
 
 /*---------- Public Routes ----------*/
 router.get('/', charactersCtrl.index);
-
+router.post('/create', charactersCtrl.create);
 
 
 /*---------- Protected Routes ----------*/
