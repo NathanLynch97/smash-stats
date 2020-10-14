@@ -24,6 +24,7 @@ function getToken() {
         token = null;
       }
     }
+    console.log(token);
     return token;
 }
   

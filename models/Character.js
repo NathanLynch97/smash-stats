@@ -6,7 +6,7 @@ const characterSchema = new Schema({
     img: String,
     moves: [{
         name: String,
-        damage: Number,
+        damage: String,
     }],
     user: {type: Schema.Types.ObjectId, ref: 'User'},
 }, {
