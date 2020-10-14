@@ -7,6 +7,14 @@ const noteSchema = new Schema({
     timestamps: true
 })
 
+const matchSchema = new Schema({
+    enemy: String,
+    yourStocks: Number,
+    enemyStock: Number,
+}, {
+    timestamps: true
+})
+
 const characterSchema = new Schema({
     name: String,
     img: String,
@@ -15,6 +23,7 @@ const characterSchema = new Schema({
         damage: String,
     }],
     notes: [noteSchema],
+    matches: [matchSchema],
     user: {type: Schema.Types.ObjectId, ref: 'User'},
 }, {
     timestamps: true
