@@ -10,7 +10,7 @@ const noteSchema = new Schema({
 const matchSchema = new Schema({
     enemy: String,
     yourStocks: Number,
-    enemyStock: Number,
+    enemyStocks: Number,
 }, {
     timestamps: true
 })

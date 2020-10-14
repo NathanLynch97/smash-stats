@@ -19,6 +19,7 @@ app.use('/api/users', require('./routes/users'));
 app.use(require('./config/auth'));
 app.use('/api/characters', require('./routes/characters'));
 app.use('/api/characters', require('./routes/notes'));
+app.use('/api/characters', require('./routes/matches'));
 // The following "catch all" route (note the *)is necessary
 // for a SPA's client-side routing to properly work
 app.get('/*', function(req, res) {
