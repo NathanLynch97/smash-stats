@@ -6,6 +6,8 @@ const rootURL = "https://api.kuroganehammer.com/api/characters";
 module.exports = {
     index,
     create,
+    show,
+    delete: deleteOne,
 }
 
 async function index(req, res) {
@@ -34,4 +36,14 @@ async function create(req, res) {
     }
     const character = await Character.create(characterObj);
     res.status(201).json(character);
+}
+
+async function show(req, res) {
+    const character = await Character.findById(req.params.id);
+    res.status(201).json(character);
+}
+
+async function deleteOne(req,res) {
+    const deletedCharacter = await Character.findByIdAndDelete(req.params.id);
+    res.status(200).json(deletedCharacter);
 }
