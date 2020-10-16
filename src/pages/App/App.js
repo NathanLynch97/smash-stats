@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Link, NavLink, Switch } from "react-router-dom";
 import './App.css';
-import LoginPage from '../LoginPage/LoginPage'
-import SignupPage from '../SignupPage/SignupPage'
+import LoginPage from '../LoginPage/LoginPage';
+import SignupPage from '../SignupPage/SignupPage';
+import HomePage from '../HomePage/HomePage';
+import CharactersPage from '../CharactersPage/CharactersPage';
 import userService from '../../utils/userService';
 
 class App extends Component {
@@ -34,6 +36,14 @@ class App extends Component {
               <>
                 <Link to="" onClick={this.handleLogout} >
                   LOG OUT
+                </Link>
+                &nbsp;&nbsp;&nbsp;
+                <Link to="/">
+                  HOME
+                </Link>
+                &nbsp;&nbsp;&nbsp;
+                <Link to="/characters">
+                  CHARACTERS
                 </Link>
               </>
             ) : (
@@ -71,8 +81,21 @@ class App extends Component {
                 />
               )}
             />
+            <Route 
+              exact
+              path="/"
+              render={() => (
+                <HomePage />
+              )}
+            />
+            <Route 
+              exact
+              path="/characters"
+              render={() => (
+                <CharactersPage />
+              )}
+            />
           </Switch>
-          Hello
         </main>
       </div>
     );
