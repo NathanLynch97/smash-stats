@@ -13,3 +13,10 @@ export function create(match, id) {
         body: JSON.stringify(match)
     }).then(res => res.json());
 }
+
+export function deleteOne(m_id, id) {
+    return fetch(`${BASE_URL}/${id}/matches/${m_id}`, {
+        method: 'DELETE',
+        headers: {'Authorization': 'Bearer ' + tokenService.getToken()}
+    }).then(res => res.json());
+}

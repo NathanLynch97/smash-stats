@@ -19,6 +19,8 @@ const DetailsPage = (props) => {
             {character.matches.map(match => 
                 <Matches 
                     match={match}
+                    character_id={character._id}
+                    handleDeleteMatch={props.handleDeleteMatch}
                     key={match._id}
                 />    
             )}

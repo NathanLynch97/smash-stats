@@ -87,6 +87,17 @@ class App extends Component {
     )
   }
 
+  handleDeleteMatch = async (m_id, id) => {
+    const deletedmatch = await matchAPI.deleteOne(m_id, id);
+    const newCharactersArray = this.state.characters.map((c) =>
+      c._id === deletedmatch._id ? deletedmatch : c
+    )
+    this.setState(
+      { characters: newCharactersArray },
+      () => this.props.history.push('/characters')
+    )
+  }
+
   handleSignupOrLogin = () => {
     this.setState({
       user: userService.getUser(),
@@ -191,6 +202,7 @@ class App extends Component {
                   location={location} 
                   handleAddNote={this.handleAddNote}
                   handleDeleteNote={this.handleDeleteNote}
+                  handleDeleteMatch={this.handleDeleteMatch}
                 />
               )}
             />
