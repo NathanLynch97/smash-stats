@@ -6,26 +6,53 @@ import SignupPage from '../SignupPage/SignupPage';
 import HomePage from '../HomePage/HomePage';
 import CharactersPage from '../CharactersPage/CharactersPage';
 import userService from '../../utils/userService';
+import * as characterAPI from '../../utils/characterService';
+import AddCharacterPage from '../AddCharacterPage/AddCharacterPage';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: userService.getUser()
+      user: userService.getUser(),
+      characters: []
     }
+  }
+
+  handleAddCharacter = async (newCharacterData) => {
+    const newCharacter = await characterAPI.create(newCharacterData);
+    this.setState(
+      (state) => ({
+        characters: [...state.characters, newCharacter]
+      }),
+      () => this.props.history.push('/characters')
+    )
+  }
+  
+  handleDeleteCharacter = async (id) => {
+    await characterAPI.deleteOne(id);
+    this.setState(
+      (state) => ({
+        characters: state.characters.filter((c) => c._id !== id),
+      })
+    )
   }
 
   handleSignupOrLogin = () => {
     this.setState({
       user: userService.getUser(),
     });
-    console.log(this.state.user);
   };
 
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
   };
+
+  /*--- LifeCycle Methods ---*/
+  async componentDidMount() {
+    const characters = await characterAPI.getAll();
+    this.setState({ characters });
+  }
 
   render() {
     return (
@@ -91,8 +118,19 @@ class App extends Component {
             <Route 
               exact
               path="/characters"
+              render={({ history }) => (
+                <CharactersPage 
+                  user={this.state.user}
+                  characters={this.state.characters}
+                  handleDeleteCharacter={this.handleDeleteCharacter}
+                />
+              )}
+            />
+            <Route 
+              exact
+              path='/add'
               render={() => (
-                <CharactersPage />
+                <AddCharacterPage handleAddCharacter={this.handleAddCharacter} />
               )}
             />
           </Switch>
