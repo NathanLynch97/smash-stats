@@ -3,20 +3,28 @@ This app functions as a tracker app for the Nintento Switch game Super Smash Bro
 ## Getting Started
 You can make your character [here](https://sei-smash-stats.herokuapp.com/)
 ## Screenshots
-![On Open](https://i.imgur.com/wEdpA5c.png)
-On open, the page makes a request to the API and displays all 319 spells in the book.
-![Login](https://i.imgur.com/I0pHdTk.png)
-After login, the page will redirect to /characters and display the current user's made characters.
-![Character Show](https://i.imgur.com/UuOdRfP.png)
-When a character is clicked, it takes you to that character's show page. Here it displays all the spells saved to that character
+![On Open](https://i.imgur.com/1ut03KK.png)
+On open, the page displays a Smash Bros image and directs the user to log in.
+![Login](https://i.imgur.com/6Y3alf0.png)
+After login, the page will redirect to /characters and display the current user's made characters. If the user does not have characters, it will only display the 'Add Character'
+Link
+![Character List](https://i.imgur.com/Qoro8IL.png)
+When a character is made, the page redirects you back to /characters where you can click details or delete on your character
+![Details Page](https://i.imgur.com/U1YxiFw.png)
+The character detail page will display the characters name, a stat image, a link to their moves, and the matches and notes associated to that character
+![With Data](https://i.imgur.com/xgHPGFx.png)
+A character will display matches and notes when created with and update and delete link on both
 ## Technology
-- EJS
+- React
 - CSS
 - Bootstrap
 - node.js
 - express
 - mongoDB
-- axios
+- fetch-API
+- node-fetch
+- 3rd Party API
 ## Next steps
 - Style the page for a better user interface
-- Add sort by level functionality to spells
+- Implement a squad strike model and user CRUD
+- Redirect to /details after character update
