@@ -8,6 +8,7 @@ import CharactersPage from '../CharactersPage/CharactersPage';
 import userService from '../../utils/userService';
 import * as characterAPI from '../../utils/characterService';
 import AddCharacterPage from '../AddCharacterPage/AddCharacterPage';
+import DetailsPage from '../DetailsPage/DetailsPage';
 
 class App extends Component {
   constructor() {
@@ -131,6 +132,13 @@ class App extends Component {
               path='/add'
               render={() => (
                 <AddCharacterPage handleAddCharacter={this.handleAddCharacter} />
+              )}
+            />
+            <Route 
+              exact
+              path='/details'
+              render={({location}) => (
+                <DetailsPage location={location} />
               )}
             />
           </Switch>
