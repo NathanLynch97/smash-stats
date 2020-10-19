@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Matches = (props) => {
     return (
@@ -9,6 +10,14 @@ const Matches = (props) => {
                 {props.match.yourStocks > props.match.enemyStocks ? 'Win' : 'Loss'}
             </div> 
             <button className="btn" onClick={() => props.handleDeleteMatch(props.match._id, props.character_id)}>X</button>
+            <Link 
+                to={{
+                    pathname:`/${props.character_id}/updatematch`,
+                    state: props.match
+                }}
+            >
+                Update
+            </Link>
         </div>
         
     )

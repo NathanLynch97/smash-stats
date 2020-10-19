@@ -14,6 +14,7 @@ import DetailsPage from '../DetailsPage/DetailsPage';
 import AddNoteForm from '../../components/AddNoteForm/AddNoteForm';
 import UpdateNoteForm from '../../components/UpdateNoteForm/UpdateNoteForm';
 import AddMatchForm from '../../components/AddMatchForm/AddMatchForm';
+import UpdateMatchForm from '../../components/UpdateMatchForm/UpdateMatchForm';
 
 class App extends Component {
   constructor() {
@@ -85,6 +86,17 @@ class App extends Component {
       { characters: newCharactersArray },
       () => this.props.history.push('/characters')
     )
+  }
+
+  handleUpdateMatch = async (updatedMatchData, id) => {
+    const updatedMatch = await matchAPI.update(updatedMatchData, id);
+    const newCharactersArray = this.state.characters.map((c) =>
+    c._id === updatedMatch._id ? updatedMatch : c
+  )
+  this.setState(
+    { characters: newCharactersArray },
+    () => this.props.history.push('/characters')
+  )
   }
 
   handleDeleteMatch = async (m_id, id) => {
@@ -234,6 +246,17 @@ class App extends Component {
                 <AddMatchForm 
                   match={match}
                   handleAddMatch={this.handleAddMatch}
+                />
+              )}
+            />
+            <Route 
+              exact
+              path='/:id/updatematch'
+              render={({match, location}) => (
+                <UpdateMatchForm 
+                  match={match}
+                  location={location}
+                  handleUpdateMatch={this.handleUpdateMatch}
                 />
               )}
             />
