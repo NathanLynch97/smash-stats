@@ -15,6 +15,7 @@ import AddNoteForm from '../../components/AddNoteForm/AddNoteForm';
 import UpdateNoteForm from '../../components/UpdateNoteForm/UpdateNoteForm';
 import AddMatchForm from '../../components/AddMatchForm/AddMatchForm';
 import UpdateMatchForm from '../../components/UpdateMatchForm/UpdateMatchForm';
+import Moves from '../../components/Moves/Moves';
 
 class App extends Component {
   constructor() {
@@ -185,7 +186,9 @@ class App extends Component {
               exact
               path="/"
               render={() => (
-                <HomePage />
+                <HomePage 
+                  user={this.state.user}
+                />
               )}
             />
             <Route 
@@ -257,6 +260,15 @@ class App extends Component {
                   match={match}
                   location={location}
                   handleUpdateMatch={this.handleUpdateMatch}
+                />
+              )}
+            />
+            <Route 
+              exact
+              path='/moves'
+              render={({location}) => (
+                <Moves 
+                  location={location} 
                 />
               )}
             />

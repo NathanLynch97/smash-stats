@@ -1,5 +1,5 @@
 import React from 'react';
-import CharacterDetailsCard from '../../components/CharacterDetailCard/CharacterDetailCard';
+import CharacterDetailCard from '../../components/CharacterDetailCard/CharacterDetailCard';
 import Matches from '../../components/Matches/Matches';
 import Notes from '../../components/Notes/Notes';
 import { Link } from 'react-router-dom';
@@ -8,11 +8,20 @@ const DetailsPage = (props) => {
     const character = props.location.state.character;
     return (
         <>
-            <CharacterDetailsCard 
+            <CharacterDetailCard 
                 key={character._id}
                 character={character}
             />
+            <Link
+                to={{
+                    pathname: '/moves',
+                    state: character
+                }}
+             >
+                MOVES
+            </Link>
             <br />
+            <h3>Matches:</h3>
             <Link to={`/${character._id}/addmatch`}>
                 ADD MATCH
             </Link>
@@ -24,6 +33,7 @@ const DetailsPage = (props) => {
                     key={match._id}
                 />    
             )}
+            <h3>Notes:</h3>
             <Link to={`/${character._id}/addnote`}>
                 ADD NOTE
             </Link>

@@ -5,7 +5,7 @@ const Matches = (props) => {
     return (
         <div>
             <div>
-                <h1>Match against {props.match.enemy}</h1>
+                <h4>Match against {props.match.enemy}</h4>
                 {props.match.yourStocks} - {props.match.enemyStocks}
                 {props.match.yourStocks > props.match.enemyStocks ? 'Win' : 'Loss'}
             </div> 
