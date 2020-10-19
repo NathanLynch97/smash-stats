@@ -12,6 +12,10 @@ const DetailsPage = (props) => {
                 key={character._id}
                 character={character}
             />
+            <br />
+            <Link to={`/${character._id}/addmatch`}>
+                ADD MATCH
+            </Link>
             {character.matches.map(match => 
                 <Matches 
                     match={match}
@@ -22,12 +26,15 @@ const DetailsPage = (props) => {
                 ADD NOTE
             </Link>
             {character.notes.map(note => 
-                <Notes 
-                    note={note}
-                    character_id={character._id}
-                    handleDeleteNote={props.handleDeleteNote}
-                    key={note._id}
-                />
+                <div>
+                    <Notes 
+                        note={note}
+                        character_id={character._id}
+                        handleDeleteNote={props.handleDeleteNote}
+                        key={note._id}
+                    />
+                </div>
+                
             )}
         </>
     )

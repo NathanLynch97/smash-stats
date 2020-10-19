@@ -14,6 +14,17 @@ export function create(note, id) {
     }).then(res => res.json());
 }
 
+export function update(note, id) {
+    return fetch(`${BASE_URL}/${id}/notes/${note._id}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
+        body: JSON.stringify(note)
+    }).then(res => res.json());
+}
+
 export function deleteOne(n_id, id) {
     return fetch(`${BASE_URL}/${id}/notes/${n_id}`, {
         method: 'DELETE',

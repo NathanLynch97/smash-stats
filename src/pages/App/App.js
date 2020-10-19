@@ -8,9 +8,12 @@ import CharactersPage from '../CharactersPage/CharactersPage';
 import userService from '../../utils/userService';
 import * as characterAPI from '../../utils/characterService';
 import * as noteAPI from '../../utils/noteService';
+import * as matchAPI from '../../utils/matchService';
 import AddCharacterPage from '../AddCharacterPage/AddCharacterPage';
 import DetailsPage from '../DetailsPage/DetailsPage';
 import AddNoteForm from '../../components/AddNoteForm/AddNoteForm';
+import UpdateNoteForm from '../../components/UpdateNoteForm/UpdateNoteForm';
+import AddMatchForm from '../../components/AddMatchForm/AddMatchForm';
 
 class App extends Component {
   constructor() {
@@ -51,10 +54,32 @@ class App extends Component {
     )
   }
 
+  handleUpdateNote = async (updatedNoteData, id) => {
+    const updatedNote = await noteAPI.update(updatedNoteData, id);
+    const newCharactersArray = this.state.characters.map((c) =>
+    c._id === updatedNote._id ? updatedNote : c
+  )
+  this.setState(
+    { characters: newCharactersArray },
+    () => this.props.history.push('/characters')
+  )
+  }
+
   handleDeleteNote = async (n_id, id) => {
     const deletedNote = await noteAPI.deleteOne(n_id, id);
     const newCharactersArray = this.state.characters.map((c) =>
       c._id === deletedNote._id ? deletedNote : c
+    )
+    this.setState(
+      { characters: newCharactersArray },
+      () => this.props.history.push('/characters')
+    )
+  }
+
+  handleAddMatch = async (newMatchData, id) => {
+    const newMatch = await matchAPI.create(newMatchData, id);
+    const newCharactersArray = this.state.characters.map((c) =>
+      c._id === newMatch._id ? newMatch : c
     )
     this.setState(
       { characters: newCharactersArray },
@@ -176,6 +201,27 @@ class App extends Component {
                 <AddNoteForm 
                   match={match}
                   handleAddNote={this.handleAddNote} 
+                />
+              )}
+            />
+            <Route 
+              exact
+              path='/:id/updatenote'
+              render={({match, location}) => (
+                <UpdateNoteForm 
+                  match={match}
+                  location={location}
+                  handleUpdateNote={this.handleUpdateNote}
+                />
+              )}
+            />
+            <Route 
+              exact
+              path='/:id/addmatch'
+              render={({match}) => (
+                <AddMatchForm 
+                  match={match}
+                  handleAddMatch={this.handleAddMatch}
                 />
               )}
             />
