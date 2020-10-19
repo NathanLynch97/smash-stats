@@ -28,3 +28,5 @@ A character will display matches and notes when created with and update and dele
 - Style the page for a better user interface
 - Implement a squad strike model and user CRUD
 - Redirect to /details after character update
+- Only show user's characters on character list
+- Calculate win percentage on front end

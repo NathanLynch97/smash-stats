@@ -25,8 +25,6 @@ class LoginPage extends Component {
       this.props.handleSignupOrLogin();
       this.props.history.push('/characters');
     } catch (err) {
-      // Do not alert in your projects,
-      // show a modal or some UI instead
       alert('Invalid login');
     }
   }
