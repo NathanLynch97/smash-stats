@@ -3,30 +3,20 @@ import tokenService from './tokenService';
 
 const BASE_URL = '/api/characters';
 
-export function getAll() {
-    return fetch(BASE_URL)
-    .then(res => res.json());
-}
-
-export function getOne(id) {
-    return fetch(`${BASE_URL}/${id}`)
-    .then(res => res.json());
-}
-
-export function create(character) {
-    return fetch(BASE_URL, {
+export function create(note, id) {
+    return fetch(`${BASE_URL}/${id}/notes`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
             'Authorization': 'Bearer ' + tokenService.getToken()
         },
-        body: JSON.stringify(character)
+        body: JSON.stringify(note)
     }).then(res => res.json());
 }
 
-export function deleteOne(id) {
-    return fetch(`${BASE_URL}/${id}`, {
+export function deleteOne(n_id, id) {
+    return fetch(`${BASE_URL}/${id}/notes/${n_id}`, {
         method: 'DELETE',
         headers: {'Authorization': 'Bearer ' + tokenService.getToken()}
-    }).then(res => res.json())
+    }).then(res => res.json());
 }

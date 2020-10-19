@@ -7,15 +7,17 @@ import HomePage from '../HomePage/HomePage';
 import CharactersPage from '../CharactersPage/CharactersPage';
 import userService from '../../utils/userService';
 import * as characterAPI from '../../utils/characterService';
+import * as noteAPI from '../../utils/noteService';
 import AddCharacterPage from '../AddCharacterPage/AddCharacterPage';
 import DetailsPage from '../DetailsPage/DetailsPage';
+import AddNoteForm from '../../components/AddNoteForm/AddNoteForm';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       user: userService.getUser(),
-      characters: []
+      characters: [],
     }
   }
 
@@ -35,6 +37,28 @@ class App extends Component {
       (state) => ({
         characters: state.characters.filter((c) => c._id !== id),
       })
+    )
+  }
+
+  handleAddNote = async (newNoteData, id) => {
+    const newNote = await noteAPI.create(newNoteData, id);
+    const newCharactersArray = this.state.characters.map((c) =>
+      c._id === newNote._id ? newNote : c
+    )
+    this.setState(
+      { characters: newCharactersArray },
+      () => this.props.history.push('/characters')
+    )
+  }
+
+  handleDeleteNote = async (n_id, id) => {
+    const deletedNote = await noteAPI.deleteOne(n_id, id);
+    const newCharactersArray = this.state.characters.map((c) =>
+      c._id === deletedNote._id ? deletedNote : c
+    )
+    this.setState(
+      { characters: newCharactersArray },
+      () => this.props.history.push('/characters')
     )
   }
 
@@ -138,7 +162,21 @@ class App extends Component {
               exact
               path='/details'
               render={({location}) => (
-                <DetailsPage location={location} />
+                <DetailsPage 
+                  location={location} 
+                  handleAddNote={this.handleAddNote}
+                  handleDeleteNote={this.handleDeleteNote}
+                />
+              )}
+            />
+            <Route 
+              exact
+              path='/:id/addnote'
+              render={({match}) => (
+                <AddNoteForm 
+                  match={match}
+                  handleAddNote={this.handleAddNote} 
+                />
               )}
             />
           </Switch>
