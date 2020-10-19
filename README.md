@@ -16,7 +16,7 @@ The character detail page will display the characters name, a stat image, a link
 A character will display matches and notes when created with and update and delete link on both
 ## Technology
 - React
-- CSS
+- HTML/CSS/JS
 - Bootstrap
 - node.js
 - express
@@ -24,6 +24,7 @@ A character will display matches and notes when created with and update and dele
 - fetch-API
 - node-fetch
 - 3rd Party API
+- JWT
 ## Next steps
 - Style the page for a better user interface
 - Implement a squad strike model and user CRUD
