@@ -1,7 +1,7 @@
 # Smash Stats
 This app functions as a tracker app for the Nintento Switch game Super Smash Bros Ultimate. A user is able to create an account and add characters by name to their roster. Smash stats uses a 3rd party API (https://api.kuroganehammer.com/swagger/index.html) to save a character's name, image, and moves to the database referencing a user. A user has the ability to add matches and notes onto each character they have saved. Matches track the enemy, your stocks, and enemy stoks while notes allows the user to add commments about a character to help with future matches.
 ## Getting Started
-You can make your character [here](https://sei-smash-stats.herokuapp.com/)
+You can get started [here](https://sei-smash-stats.herokuapp.com/)
 ## Screenshots
 ![On Open](https://i.imgur.com/1ut03KK.png)
 On open, the page displays a Smash Bros image and directs the user to log in.
